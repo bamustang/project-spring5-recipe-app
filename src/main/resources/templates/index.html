@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipe Project</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<h1 th:text="'Thymeleaf Recipe Template Executed'">Recipe Template</h1>
+<table stype="border: solid 1 black;">
+    <tr>
+        <th>Recipe ID</th>
+        <th>Description</th>
+    </tr>
+    <!--/*@thymesVar id="recipes" type="<List>guru.springframework.recipes.model.Recipe"*/-->
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe[&quot;id&quot;]}">1</td>
+        <td th:text="${recipe.description}">Description Goes here</td>
+    </tr>
+</table>
+
+</body>
+</html>

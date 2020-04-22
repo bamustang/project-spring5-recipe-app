@@ -70,70 +70,18 @@ public class BootstrapData implements CommandLineRunner {
         Optional<UnitOfMeasure> poundOptional = unitOfMeasureRepository.findByUnitOfMeasure("pound");
         if (!poundOptional.isPresent()) {throw new RuntimeException("'pound' value missing from UOM");}
 
-
         //Ingredients
-        Ingredient avocados = new Ingredient();
-        avocados.setAmount(BigDecimal.valueOf(2.0));
-        avocados.setDescription("Ripe avocados");
-        //uom - each
-        avocados.setUom(eachOptional.get());
-        ingredientSetGuacamole.add(avocados);
-
-        Ingredient salt = new Ingredient();
-        salt.setAmount(BigDecimal.valueOf(0.25));
-        salt.setDescription("salt");
-        //uom - tsp
-        salt.setUom(tspOptional.get());
-        ingredientSetGuacamole.add(salt);
-
-        Ingredient limeJuice = new Ingredient();
-        limeJuice.setAmount(BigDecimal.ONE);
-        limeJuice.setDescription("fresh lime juice");
-        //uom - TBSP
-        limeJuice.setUom(tablespoonOptional.get());
-        ingredientSetGuacamole.add(limeJuice);
-
-        Ingredient redOnion = new Ingredient();
-        redOnion.setAmount(BigDecimal.valueOf(2));
-        redOnion.setDescription("minced red onion");
-        //uom - cup
-        redOnion.setUom(cupOptional.get());
-        ingredientSetGuacamole.add(redOnion);
-
-        Ingredient serranoChile = new Ingredient();
-        serranoChile.setAmount(BigDecimal.ONE);
-        serranoChile.setDescription("Serrano chile, stems and seeds removed, minced");
-        //uom - Each
-        serranoChile.setUom(eachOptional.get());
-        ingredientSetGuacamole.add(serranoChile);
-
-        Ingredient cilantro = new Ingredient();
-        cilantro.setAmount(BigDecimal.valueOf(2));
-        cilantro.setDescription("cilantro (leaves and tender stems) finely chopped");
-        //uom - TBSP
-        cilantro.setUom(tablespoonOptional.get());
-        ingredientSetGuacamole.add(cilantro);
-
-        Ingredient blackPepper = new Ingredient();
-        blackPepper.setAmount(BigDecimal.valueOf(1));
-        blackPepper.setDescription("fine ground black pepper");
-        //uom - pinch
-        blackPepper.setUom(pinchOptional.get());
-        ingredientSetGuacamole.add(blackPepper);
-
-        Ingredient tomato = new Ingredient();
-        tomato.setAmount(BigDecimal.valueOf(0.25));
-        tomato.setDescription("ripe tomato");
-        //uom - Each
-        tomato.setUom(eachOptional.get());
-        ingredientSetGuacamole.add(tomato);
-
-        Ingredient garnish = new Ingredient();
-        garnish.setAmount(BigDecimal.valueOf(1));
-        garnish.setDescription("garnish with raddish or jicama");
-        //uom - garnish
-        garnish.setUom(garnishOptional.get());
-        ingredientSetGuacamole.add(garnish);
+        ingredientSetGuacamole.add( new Ingredient("Ripe avocados", BigDecimal.valueOf(2.0), eachOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("salt", BigDecimal.valueOf(0.25), tspOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("fresh lime juice", BigDecimal.ONE, tablespoonOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("minced red onion", BigDecimal.valueOf(2), cupOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("Serrano chile, stems and seeds removed, minced",
+                BigDecimal.ONE, eachOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("cilantro (leaves and tender stems) finely chopped",
+                BigDecimal.valueOf(2), tablespoonOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("fine ground black pepper", BigDecimal.ONE, pinchOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("ripe tomato", BigDecimal.valueOf(0.25), eachOptional.get(), guacamole ));
+        ingredientSetGuacamole.add(new Ingredient("garnish with radish or jicama", BigDecimal.ONE, garnishOptional.get(), guacamole ));
 
         System.out.println("All ingredients defined and added to the ingredient set.");
 

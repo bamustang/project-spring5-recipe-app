@@ -7,17 +7,27 @@
 <body>
 
 <h1 th:text="'Thymeleaf Recipe Template Executed'">Recipe Template</h1>
-<table stype="border: solid 1 black;">
+<table style="border: solid 1 black;">
     <tr>
         <th>Recipe ID</th>
         <th>Description</th>
     </tr>
-    <!--/*@thymesVar id="recipes" type="<List>guru.springframework.recipes.model.Recipe"*/-->
+
     <tr th:each="recipe : ${recipes}">
-        <td th:text="${recipe[&quot;id&quot;]}">1</td>
-        <td th:text="${recipe.description}">Description Goes here</td>
+
+        <td th:text="${recipe.id}"><center>placeholder for id</center></td>
+        <td th:text="${recipe.description}">placeholder for description</td>
     </tr>
 </table>
-
+<br/><br/>
+<table style="border: solid 1 black;">
+    <tr>
+        <th>Recipe Categories</th>
+    </tr>
+    <!--/*@thymesVar id="recipes" type="<List>guru.springframework.recipes.model.Recipe"*/-->
+    <tr th:each="cat : ${categories}">
+        <td th:text="${cat.category}">Category goes here</td>
+    </tr>
+</table>
 </body>
 </html>

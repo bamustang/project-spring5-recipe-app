@@ -18,7 +18,17 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
-    public void newIngredient(String description, BigDecimal amount, UnitOfMeasure uom ) {
+   public Ingredient() {
+    }
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+        setDescription(description);
+        setAmount(amount);
+        setUom(uom);
+        setRecipe(recipe);
+    }
+
+        public void newIngredient(String description, BigDecimal amount, UnitOfMeasure uom ) {
         setDescription(description);
         setAmount(amount);
         setUom(uom);

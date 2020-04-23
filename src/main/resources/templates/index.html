@@ -27,5 +27,7 @@
         <td th:text="${cat.category}">Category goes here</td>
     </tr>
 </table>
+<hr/>
+Page loaded at <span th:text="${#dates.format(#dates.createNow(),'MM/dd/YYYY HH:mm:ss')}">time goes here</span>
 </body>
 </html>

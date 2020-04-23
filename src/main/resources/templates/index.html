@@ -6,25 +6,23 @@
 </head>
 <body>
 
-<h1 th:text="'Thymeleaf Recipe Template Executed'">Recipe Template</h1>
-<table style="border: solid 1 black;">
+<h1 th:text="'Recipe Index'"> Placeholder for Recipe Title</h1>
+<table>
     <tr>
         <th>Recipe ID</th>
         <th>Description</th>
     </tr>
-
     <tr th:each="recipe : ${recipes}">
-
-        <td th:text="${recipe.id}"><center>placeholder for id</center></td>
+        <td th:text="${recipe.id}">placeholder for id</td>
         <td th:text="${recipe.description}">placeholder for description</td>
     </tr>
 </table>
-<br/><br/>
-<table style="border: solid 1 black;">
+<hr/>
+<table>
     <tr>
         <th>Recipe Categories</th>
     </tr>
-    <!--/*@thymesVar id="recipes" type="<List>guru.springframework.recipes.model.Recipe"*/-->
+    <!--/*@thymesVar id="categories" type="<List>guru.springframework.recipes.model.Category"*/-->
     <tr th:each="cat : ${categories}">
         <td th:text="${cat.category}">Category goes here</td>
     </tr>

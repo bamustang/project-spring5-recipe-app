@@ -4,6 +4,7 @@ import guru.springframework.recipes.model.*;
 import guru.springframework.recipes.repository.CategoryRepository;
 import guru.springframework.recipes.repository.RecipeRepository;
 import guru.springframework.recipes.repository.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
+@Slf4j
 public class BootstrapData implements CommandLineRunner {
 
     private final RecipeRepository recipeRepository;
@@ -26,8 +28,15 @@ public class BootstrapData implements CommandLineRunner {
     }
 
     @Override
-    public void run (String... args) throws RuntimeException, Exception {
+    public void run (String... args) throws Exception {
         System.out.println("Starting BoostrapData.run method...");
+        System.out.println("\nEnabled loggers: \nlog.info: " + log.isInfoEnabled()
+                + "\nlog.warning: " + log.isWarnEnabled()
+                + "\nlog.debug: " + log.isDebugEnabled()
+                + "\nlog.trace: " + log.isTraceEnabled());
+        log.info("Starting BoostrapData.run method... (log.info)");
+        log.debug("Starting BoostrapData.run method... (log.debug)");
+        log.trace("Starting BoostrapData.run method... (log.trace)");
 
         //categories must already be in the table
         Set<Category>recipeCategories = new HashSet<>();
@@ -81,6 +90,7 @@ public class BootstrapData implements CommandLineRunner {
         ingredientSetGuacamole.add(new Ingredient("garnish with radish or jicama", BigDecimal.ONE, garnishOptional.get(), guacamole ));
 
         System.out.println("All guacamole ingredients defined and added to the ingredient set.");
+        log.debug("All guacamole ingredients defined and added to the ingredient set. (log.debug)");
 
         //populate the recipe
         guacamole.setIngredients(ingredientSetGuacamole);

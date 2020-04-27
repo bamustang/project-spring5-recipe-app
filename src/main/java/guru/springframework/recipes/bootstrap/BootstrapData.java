@@ -29,8 +29,8 @@ public class BootstrapData implements CommandLineRunner {
 
     @Override
     public void run (String... args) throws Exception {
-        System.out.println("Starting BoostrapData.run method...");
-        System.out.println("\nEnabled loggers: \nlog.info: " + log.isInfoEnabled()
+        log.info("Starting BoostrapData.run method...");
+        log.info("\nEnabled loggers: \nlog.info: " + log.isInfoEnabled()
                 + "\nlog.warning: " + log.isWarnEnabled()
                 + "\nlog.debug: " + log.isDebugEnabled()
                 + "\nlog.trace: " + log.isTraceEnabled());
@@ -48,28 +48,20 @@ public class BootstrapData implements CommandLineRunner {
         //units of measure must already be in the table
         Optional<UnitOfMeasure> tspOptional = unitOfMeasureRepository.findByUnitOfMeasure("teaspoon");
         if (!tspOptional.isPresent()) {throw new RuntimeException("'teaspoon' value missing from UOM");}
-
         Optional<UnitOfMeasure> tablespoonOptional = unitOfMeasureRepository.findByUnitOfMeasure("tablespoon");
         if (!tablespoonOptional.isPresent()) {throw new RuntimeException("'tablespoon' value missing from UOM");}
-
         Optional<UnitOfMeasure> pintOptional = unitOfMeasureRepository.findByUnitOfMeasure("tablespoon");
         if (!pintOptional.isPresent()) {throw new RuntimeException("'pint' value missing from UOM");}
-
         Optional<UnitOfMeasure> pinchOptional = unitOfMeasureRepository.findByUnitOfMeasure("pinch");
         if (!pinchOptional.isPresent()) {throw new RuntimeException("'pinch' value missing from UOM");}
-
         Optional<UnitOfMeasure> garnishOptional = unitOfMeasureRepository.findByUnitOfMeasure("garnish");
         if (!garnishOptional.isPresent()) {throw new RuntimeException("'garnish' value missing from UOM");}
-
         Optional<UnitOfMeasure> eachOptional = unitOfMeasureRepository.findByUnitOfMeasure("each");
         if (!eachOptional.isPresent()) {throw new RuntimeException("'each' value missing from UOM");}
-
         Optional<UnitOfMeasure> cupOptional = unitOfMeasureRepository.findByUnitOfMeasure("cup");
         if (!cupOptional.isPresent()) {throw new RuntimeException("'cup' value missing from UOM");}
-
         Optional<UnitOfMeasure> poundOptional = unitOfMeasureRepository.findByUnitOfMeasure("pound");
         if (!poundOptional.isPresent()) {throw new RuntimeException("'pound' value missing from UOM");}
-
 
         // Guacamole recipe -----------------------------------------
         Recipe guacamole = new Recipe();
@@ -89,7 +81,6 @@ public class BootstrapData implements CommandLineRunner {
         ingredientSetGuacamole.add(new Ingredient("ripe tomato", BigDecimal.valueOf(0.25), eachOptional.get(), guacamole ));
         ingredientSetGuacamole.add(new Ingredient("garnish with radish or jicama", BigDecimal.ONE, garnishOptional.get(), guacamole ));
 
-        System.out.println("All guacamole ingredients defined and added to the ingredient set.");
         log.debug("All guacamole ingredients defined and added to the ingredient set. (log.debug)");
 
         //populate the recipe
@@ -120,7 +111,7 @@ public class BootstrapData implements CommandLineRunner {
         guacamole.setCategories(recipeCategories);
 
         recipeRepository.save(guacamole);
-        System.out.println(String.format("recipe guacamole saved to recipe repository. There are %s recipes in the repository.",recipeRepository.count()));
+        log.info(String.format("recipe guacamole saved to recipe repository. There are %s recipes in the repository.",recipeRepository.count()));
 
         // Chicken  taco recipe -----------------------------------------
         Recipe tacos = new Recipe();
@@ -163,13 +154,10 @@ public class BootstrapData implements CommandLineRunner {
                 "\n" +
                 "5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges."
         );
-
         tacos.setCategories(recipeCategories);
-
         recipeRepository.save(tacos);
 
-        System.out.println(String.format("recipe tacos saved to recipe repository. There are %s recipes in the repository.",recipeRepository.count()));
-
-        System.out.println("\n\nBootstrapData completed.");
+        log.info(String.format("recipe tacos saved to recipe repository. There are %s recipes in the repository.",recipeRepository.count()));
+        log.info("\n\nBootstrapData completed.");
     }
 }

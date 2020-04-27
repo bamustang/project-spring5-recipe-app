@@ -2,10 +2,12 @@ package guru.springframework.recipes.services;
 
 import guru.springframework.recipes.model.Category;
 import guru.springframework.recipes.repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
